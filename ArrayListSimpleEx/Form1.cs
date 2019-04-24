@@ -16,6 +16,7 @@ namespace ArrayListSimpleEx
   {
 
     private ArrayList sentenceArr = new ArrayList();
+    bool reversed = false;
 
 
     public Form1( )
@@ -58,22 +59,41 @@ namespace ArrayListSimpleEx
     }
 
     // SHOW NORMAL MESSAGE
-    private void BtnShowMsg_Click( object sender, EventArgs e ) => lblMessage.Text = showMessage(sentenceArr);
+    private void BtnShowMsg_Click( object sender, EventArgs e )
+    {
+
+      if ( reversed )
+      {
+        sentenceArr.Reverse();
+      }
+
+      lblMessage.Text = showMessage( sentenceArr );
+      reversed = false;
+      
+    }
 
 
     //SHOW REVERSE MESSAGE
     private void BtnReverse_Click( object sender, EventArgs e )
     {
+
+      reversed = true;
+
       //Reverse arrayList
       sentenceArr.Reverse();
       //Show message
       lblMessage.Text = showMessage( sentenceArr );
-      //Put arrayList in normal form
-      sentenceArr.Reverse();
+
     }
 
     //Add word at second position
-    private void BtnAdd_Click( object sender, EventArgs e ) => sentenceArr.Insert( 1, txtSecondPos.Text );
+    private void BtnAdd_Click( object sender, EventArgs e )
+    {
+      if (!reversed)
+      {
+        sentenceArr.Insert( 1, txtSecondPos.Text );
+      }
+    }
     //Remove word at second position
     private void Button1_Click( object sender, EventArgs e ) => sentenceArr.RemoveAt( 1 );
    
